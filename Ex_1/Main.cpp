@@ -26,7 +26,6 @@ void processmenu(int MenuID) {
 	}
 	case 2: {
 		glColor3f(0, 1, 0);
-
 		glutPostRedisplay();
 		break;
 	}
