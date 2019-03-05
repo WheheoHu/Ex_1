@@ -1,5 +1,7 @@
+#include <iostream>
 #include "glut.h"
 #include "CoordinateXY.h"
+
 
 #pragma comment(lib,"opengl32.lib")
 #pragma comment(lib,"glu32.lib")
@@ -12,7 +14,7 @@
 int ChangeColor = WHITE;
 
 
-
+//右键菜单更改颜色
 void processmenu(int MenuID) {
 
 	switch (MenuID)
@@ -39,6 +41,7 @@ void processmenu(int MenuID) {
 	}
 }
 
+//初始化菜单
 void InitMenu() {
 	int m_menuID=glutCreateMenu(processmenu);
 	glutSetMenu(m_menuID);
@@ -48,15 +51,14 @@ void InitMenu() {
 	glutAddMenuEntry("Blue", 3);
 	glutAddMenuEntry("EXIT", 4);
 }
+
+//初始化窗口
 void InitWindow(){
 	glutCreateWindow("simple");
 	InitMenu();
 }
 
-
-
-
-	
+//渲染
 void RenderScene() {
 	glClear(GL_COLOR_BUFFER_BIT);
 	
@@ -74,6 +76,8 @@ void RenderScene() {
 	
 	glFlush();
 }
+
+
 int main() {
 	//创建窗口
 	InitWindow();
