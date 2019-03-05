@@ -1,15 +1,44 @@
 #include "glut.h"
+#include "CoordinateXY.h"
 
 #pragma comment(lib,"opengl32.lib")
 #pragma comment(lib,"glu32.lib")
 #pragma comment(lib,"glut32.lib")
+
+#define WHITE 0
+#define RED 1;
+#define GREEN 2;
+#define BLUE 3;
+int ChangeColor = WHITE;
+
+
+
 void processmenu(int MenuID) {
 
-	if (MenuID==4)
+	switch (MenuID)
 	{
+	case 1: {
+		glColor3f(1, 0, 0);
+		glutPostRedisplay();
+		break;
+	}
+	case 2: {
+		glColor3f(0, 1, 0);
+
+		glutPostRedisplay();
+		break;
+	}
+	case 3: {
+		glColor3f(0, 0, 1);
+		glutPostRedisplay();
+		break;
+	}
+	case 4: {
 		exit(0);
+		break; }
 	}
 }
+
 void InitMenu() {
 	int m_menuID=glutCreateMenu(processmenu);
 	glutSetMenu(m_menuID);
@@ -23,42 +52,24 @@ void InitWindow(){
 	glutCreateWindow("simple");
 	InitMenu();
 }
-	
+
+
+
+
 	
 void RenderScene() {
 	glClear(GL_COLOR_BUFFER_BIT);
 	
 
-	glPointSize(2);
-	glBegin(GL_POINTS);
-	glColor3f(1, 0, 0);
-	glVertex2f(0, 0);
-	glEnd();
-
-	glPointSize(3);
-	glBegin(GL_POINTS);
-	glColor3f(0, 1, 0);
-	glVertex2f(0.5, 0);
-	glEnd();
-
-	glPointSize(4);
-	glBegin(GL_POINTS);
-	glColor3f(0, 0, 1);
-	glVertex2f(0, 0.5);
+	
+	glBegin(GL_QUADS);
+	glVertex2f(0.5, 0.5);
+	glVertex2f(0.5, -0.5);
+	glVertex2f(-0.5, -0.5);
+	glVertex2f(-0.5, 0.5);
 	glEnd();
 
 
-	glPointSize(5);
-	glBegin(GL_POINTS);
-	glColor3f(1, 0, 0);
-	glVertex2f(-0.5,0);
-	glEnd();
-
-	glPointSize(6);
-	glBegin(GL_POINTS);
-	glColor3f(1, 1, 0);
-	glVertex2f(0, -0.5);
-	glEnd();
 
 	
 	glFlush();
