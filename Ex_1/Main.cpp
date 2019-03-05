@@ -3,7 +3,28 @@
 #pragma comment(lib,"opengl32.lib")
 #pragma comment(lib,"glu32.lib")
 #pragma comment(lib,"glut32.lib")
+void processmenu(int MenuID) {
 
+	if (MenuID==4)
+	{
+		exit(0);
+	}
+}
+void InitMenu() {
+	int m_menuID=glutCreateMenu(processmenu);
+	glutSetMenu(m_menuID);
+	glutAttachMenu(GLUT_RIGHT_BUTTON);
+	glutAddMenuEntry("Red", 1);
+	glutAddMenuEntry("Green", 2);
+	glutAddMenuEntry("Blue", 3);
+	glutAddMenuEntry("EXIT", 4);
+}
+void InitWindow(){
+	glutCreateWindow("simple");
+	InitMenu();
+}
+	
+	
 void RenderScene() {
 	glClear(GL_COLOR_BUFFER_BIT);
 	
@@ -44,7 +65,7 @@ void RenderScene() {
 }
 int main() {
 	//´´½¨´°¿Ú
-	glutCreateWindow("simple");
+	InitWindow();
 	glutDisplayFunc(RenderScene);
 	glutMainLoop();
 	return 0;
