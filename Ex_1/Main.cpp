@@ -7,11 +7,7 @@
 #pragma comment(lib,"glu32.lib")
 #pragma comment(lib,"glut32.lib")
 
-#define WHITE 0
-#define RED 1;
-#define GREEN 2;
-#define BLUE 3;
-int ChangeColor = WHITE;
+
 
 
 //右键菜单更改颜色
