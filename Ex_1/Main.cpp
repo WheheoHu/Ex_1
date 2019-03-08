@@ -1,6 +1,6 @@
 #include <iostream>
 #include "glut.h"
-#include "CoordinateXY.h"
+
 
 
 #pragma comment(lib,"opengl32.lib")
@@ -19,6 +19,11 @@ void processmenu(int MenuID) {
 
 	switch (MenuID)
 	{
+	case 0: {
+		glColor3f(1, 1, 1);
+		glutPostRedisplay();
+		break;
+	}
 	case 1: {
 		glColor3f(1, 0, 0);
 		glutPostRedisplay();
@@ -45,6 +50,7 @@ void InitMenu() {
 	int m_menuID=glutCreateMenu(processmenu);
 	glutSetMenu(m_menuID);
 	glutAttachMenu(GLUT_RIGHT_BUTTON);
+	glutAddMenuEntry("White", 0);
 	glutAddMenuEntry("Red", 1);
 	glutAddMenuEntry("Green", 2);
 	glutAddMenuEntry("Blue", 3);
