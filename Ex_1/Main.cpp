@@ -8,6 +8,9 @@
 //#pragma comment(lib,"glu32.lib")
 #pragma comment(lib,"glut32.lib")
 
+#define WINDOW_WIDTH 640
+#define WINDOW_HEIGHT 480
+
 bool creak = false;
 static CoordinateXY   coorxy;
 
@@ -59,18 +62,19 @@ void InitMenu() {
 
 //初始化窗口
 void InitWindow() {
-	glutInitWindowSize(640, 480);
+	glutInitWindowSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 	glutCreateWindow("simple");
 	InitMenu();
+	glMatrixMode(GL_PROJECTION);// sets the current matrix to projection
+	glLoadIdentity();//multiply the current matrix by identity matrix
+	gluOrtho2D(0.0, WINDOW_WIDTH, WINDOW_HEIGHT, 0);//sets the parallel(orthographic) projection of the full frame buffer 
+
 }
 
 //渲染
 void RenderScene() {
 
-	glMatrixMode(GL_PROJECTION);// sets the current matrix to projection
-	glLoadIdentity();//multiply the current matrix by identity matrix
-	gluOrtho2D(0.0, 640.0, 0.0, 480.0);//sets the parallel(orthographic) projection of the full frame buffer 
-
+	
 	//glColor3f(1, 1, 0);
 	glPointSize(10);
 	if (creak)
@@ -82,24 +86,17 @@ void RenderScene() {
 		glEnd();
 	}
 
-	/*glBegin(GL_QUADS);
-	glVertex2f(0.5, 0.5);
-	glVertex2f(0.5, -0.5);
-	glVertex2f(-0.5, -0.5);
-	glVertex2f(-0.5, 0.5);
-	glEnd();*/
-
 	glFlush();
 }
 
+//鼠标操作，将坐标传递给cooxy
 void mouseProcess(int button, int state, int x, int y) {
 	if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
 	{
 		creak = true;
 		
-		/*coorxy.setX(x);
-		coorxy.setY(480 - y);*/
-		setXY(x, 480 - y);
+		
+		setXY(x, y);
 	}
 
 	glutPostRedisplay();
