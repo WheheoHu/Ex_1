@@ -7,6 +7,8 @@ public:
 	~CoordinateXY();
 	void setX(int x);
 	void setY(int y);
+	void plusnum();
+
 	//»ñµÃx×ø±ê
 	int getCoorX() {
 		
@@ -20,5 +22,6 @@ public:
 private:
 	int CoordinateX;
 	int CoordinateY;
+	int point_num;
 };
 

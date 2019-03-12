@@ -15,6 +15,7 @@ static CoordinateXY   coorxy;
 void setXY(int x,int y) {
 	coorxy.setX(x);
 	coorxy.setY(y);
+	coorxy.plusnum();
 }
 
 //右键菜单更改颜色
@@ -24,22 +25,18 @@ void processmenu(int MenuID) {
 	{
 	case 0: {
 		glColor3f(1, 1, 1);
-		glutPostRedisplay();
 		break;
 	}
 	case 1: {
 		glColor3f(1, 0, 0);
-		glutPostRedisplay();
 		break;
 	}
 	case 2: {
 		glColor3f(0, 1, 0);
-		glutPostRedisplay();
 		break;
 	}
 	case 3: {
 		glColor3f(0, 0, 1);
-		glutPostRedisplay();
 		break;
 	}
 	case 4: {
@@ -100,8 +97,9 @@ void mouseProcess(int button, int state, int x, int y) {
 	{
 		creak = true;
 		
-		coorxy.setX(x);
-		coorxy.setY(480 - y);
+		/*coorxy.setX(x);
+		coorxy.setY(480 - y);*/
+		setXY(x, 480 - y);
 	}
 
 	glutPostRedisplay();

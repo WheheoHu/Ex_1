@@ -9,6 +9,7 @@ CoordinateXY::CoordinateXY(int coorX, int coorY)
 {
 	CoordinateX = coorX;
 	CoordinateY = coorY;
+	point_num = 0;
 }
 
 CoordinateXY::CoordinateXY()
@@ -27,4 +28,9 @@ void CoordinateXY::setX(int x)
 void CoordinateXY::setY(int y)
 {
 	CoordinateY = y;
+}
+
+void CoordinateXY::plusnum()
+{
+	point_num++;
 }
