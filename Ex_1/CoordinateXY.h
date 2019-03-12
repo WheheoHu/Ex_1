@@ -3,8 +3,10 @@ class CoordinateXY
 {
 public:
 	CoordinateXY(int coorX,int coorY);
+	CoordinateXY();
 	~CoordinateXY();
-
+	void setX(int x);
+	void setY(int y);
 	//»ñµÃx×ø±ê
 	int getCoorX() {
 		

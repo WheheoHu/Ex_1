@@ -1,14 +1,21 @@
+#include <stdlib.h>
 
 #include "glut.h"
-
+#include "CoordinateXY.h"
 
 
 //#pragma comment(lib,"opengl32.lib")
 //#pragma comment(lib,"glu32.lib")
 #pragma comment(lib,"glut32.lib")
 
+bool creak = true;
+static CoordinateXY   coorxy;
 
-
+//test code
+void setXY(int x,int y) {
+	coorxy.setX(x);
+	coorxy.setY(y);
+}
 
 //右键菜单更改颜色
 void processmenu(int MenuID) {
@@ -43,7 +50,7 @@ void processmenu(int MenuID) {
 
 //初始化菜单
 void InitMenu() {
-	int m_menuID=glutCreateMenu(processmenu);
+	int m_menuID = glutCreateMenu(processmenu);
 	glutSetMenu(m_menuID);
 	glutAttachMenu(GLUT_RIGHT_BUTTON);
 	glutAddMenuEntry("White", 0);
@@ -54,35 +61,61 @@ void InitMenu() {
 }
 
 //初始化窗口
-void InitWindow(){
+void InitWindow() {
+	//glutInitWindowSize(640, 480);
 	glutCreateWindow("simple");
-	InitMenu();
+	//InitMenu();
 }
 
 //渲染
 void RenderScene() {
-	glClear(GL_COLOR_BUFFER_BIT);
-	
 
-	
-	glBegin(GL_QUADS);
+
+
+	glColor3f(1, 1, 1);
+	glPointSize(50);
+	if (creak)
+	{
+
+		
+		glBegin(GL_POINTS);
+
+		glVertex2i(coorxy.getCoorX(), coorxy.getCoorY());
+		glEnd();
+	}
+
+	/*glBegin(GL_QUADS);
 	glVertex2f(0.5, 0.5);
 	glVertex2f(0.5, -0.5);
 	glVertex2f(-0.5, -0.5);
 	glVertex2f(-0.5, 0.5);
-	glEnd();
+	glEnd();*/
 
-
-
-	
 	glFlush();
 }
 
+void mouseProcess(int button, int state, int x, int y) {
+	if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
+	{
+		creak = true;
+		
+		/*coorxy.setX(x);
+		coorxy.setY(480 - y);*/
+	}
+
+	glutPostRedisplay();
+}
 
 int main() {
 	//创建窗口
 	InitWindow();
+
+
+	setXY(100, 200);
 	glutDisplayFunc(RenderScene);
+	
+	//glutMouseFunc(mouseProcess);
+
 	glutMainLoop();
 	return 0;
 }
