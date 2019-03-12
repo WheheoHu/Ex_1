@@ -8,7 +8,7 @@
 //#pragma comment(lib,"glu32.lib")
 #pragma comment(lib,"glut32.lib")
 
-bool creak = true;
+bool creak = false;
 static CoordinateXY   coorxy;
 
 //test code
@@ -62,25 +62,26 @@ void InitMenu() {
 
 //≥ı ºªØ¥∞ø⁄
 void InitWindow() {
-	//glutInitWindowSize(640, 480);
+	glutInitWindowSize(640, 480);
 	glutCreateWindow("simple");
-	//InitMenu();
+	InitMenu();
 }
 
 //‰÷»æ
 void RenderScene() {
 
+	glMatrixMode(GL_PROJECTION);// sets the current matrix to projection
+	glLoadIdentity();//multiply the current matrix by identity matrix
+	gluOrtho2D(0.0, 640.0, 0.0, 480.0);//sets the parallel(orthographic) projection of the full frame buffer 
 
-
-	glColor3f(1, 1, 1);
-	glPointSize(50);
+	//glColor3f(1, 1, 0);
+	glPointSize(10);
 	if (creak)
 	{
 
 		
 		glBegin(GL_POINTS);
-
-		glVertex2i(coorxy.getCoorX(), coorxy.getCoorY());
+		glVertex2i(coorxy.getCoorX(),coorxy.getCoorY());
 		glEnd();
 	}
 
@@ -99,8 +100,8 @@ void mouseProcess(int button, int state, int x, int y) {
 	{
 		creak = true;
 		
-		/*coorxy.setX(x);
-		coorxy.setY(480 - y);*/
+		coorxy.setX(x);
+		coorxy.setY(480 - y);
 	}
 
 	glutPostRedisplay();
@@ -111,10 +112,10 @@ int main() {
 	InitWindow();
 
 
-	setXY(100, 200);
+	//setXY(100, 200);
 	glutDisplayFunc(RenderScene);
 	
-	//glutMouseFunc(mouseProcess);
+	glutMouseFunc(mouseProcess);
 
 	glutMainLoop();
 	return 0;
