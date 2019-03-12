@@ -19,6 +19,10 @@ public:
 	int getCoorY() {
 		return CoordinateY;
 	}
+
+	int getpointnum() {
+		return point_num;
+	}
 private:
 	int CoordinateX;
 	int CoordinateY;

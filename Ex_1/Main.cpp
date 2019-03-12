@@ -1,9 +1,9 @@
 #include <stdlib.h>
-
+#include <iostream>
 #include "glut.h"
 #include "CoordinateXY.h"
 
-
+using namespace std;
 //#pragma comment(lib,"opengl32.lib")
 //#pragma comment(lib,"glu32.lib")
 #pragma comment(lib,"glut32.lib")
@@ -85,7 +85,7 @@ void RenderScene() {
 		glVertex2i(coorxy.getCoorX(),coorxy.getCoorY());
 		glEnd();
 	}
-
+	cout << coorxy.getpointnum() << endl;
 	glFlush();
 }
 
@@ -98,7 +98,7 @@ void mouseProcess(int button, int state, int x, int y) {
 		
 		setXY(x, y);
 	}
-
+	
 	glutPostRedisplay();
 }
 
@@ -111,7 +111,7 @@ int main() {
 	glutDisplayFunc(RenderScene);
 	
 	glutMouseFunc(mouseProcess);
-
+	
 	glutMainLoop();
 	return 0;
 }
